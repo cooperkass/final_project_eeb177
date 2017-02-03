@@ -1,0 +1,15 @@
+Sea Grass (Order: Allismatales)
+	shell cmmnd: tail -n +20 seagrass_pbdb_data.csv | cut -d "," -f 6 | sort | uniq -c | wc -l
+	20 UNIQUE SPECIES
+
+Hymenoptera (Order)
+	shell cmmnd: tail -n +20 hymenoptera_pbdb_data.csv | cut -d "," -f 6 | sort | uniq -c | wc -l
+	3262 UNIQUE SPECIES
+
+Testudines (Order)
+	shell cmmnd: tail -n +20 testudines_pbdb_data.csv | cut -d "," -f 6 | sort | uniq -c | wc -l
+	761 UNIQUE SPECIES
+
+I'm not really sure about my preference order for these three groups. Sea grasses are interesting because they are invasive, but they also function as fish nurseries. Hymenoptera are interesting because of the devlopment of eusociality multiple times. Testudines are interesting just because turtles are super cool. So I guess testudines would be last in preference. Manipulating data to put together evolutionary histories or phylogenetic trees of either of the other two groups would be a worthwhile project. Calculating speciation and extinction rates for the sea grasses would also be interesting because of their invasiveness. 
+
+
