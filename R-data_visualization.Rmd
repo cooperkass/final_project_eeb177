@@ -1,0 +1,27 @@
+---
+title: "Final Project Data Visualization"
+author: "Cooper Kass"
+date: "March 9, 2017"
+output: html_document
+---
+
+```{r}
+sea_grass_data <- read.csv("one_header_seagrass.csv")
+head(sea_grass_data[1:13])
+```
+```{r}
+library(ggplot2)
+ggplot(sea_grass_data, aes(x = accepted_name)) + geom_histogram(stat = "count", color = "blue") + facet_wrap(~accepted_name, nrow = 4)
+```
+```{r}
+ggplot(sea_grass_data, aes(x = early_interval)) + geom_histogram(stat = "count", color = "red") + facet_wrap(~early_interval, nrow = 4)
+```
+```{r}
+source("~/PyRate/pyrate_utilities.r")
+
+# we need to give the utilities a list of extant species
+extant_seagrasses = c("Heterozostera chilensis", "Heterozostera polychlamys", "Heterozostera nigricaulis", "Heterozostera tasmanica")
+
+# use the extract.ages.pbdb() function in pyrate_utilities to reformat our dataset...
+extract.ages.pbdb(file= "pyrate_seagrass_data.csv",extant_species=extant_seagrasses)
+```
