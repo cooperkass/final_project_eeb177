@@ -27,6 +27,7 @@ extract.ages.pbdb(file= "pyrate_alismatales.csv",extant_species=extant_seagrasse
 ```
 
 ```{r}
+library(ggplot2)
 mp <- NULL
 mapWorld <- borders("world", colour="gray50", fill="gray50") # create a layer of borders
 mp <- ggplot() + mapWorld
