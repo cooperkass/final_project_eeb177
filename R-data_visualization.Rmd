@@ -6,22 +6,43 @@ output: html_document
 ---
 
 ```{r}
-sea_grass_data <- read.csv("one_header_seagrass.csv")
-head(sea_grass_data[1:13])
+sea_grass_data <- read.csv("one-header_alismatales_data.csv")
+head(sea_grass_data[1:15])
 ```
 ```{r}
 library(ggplot2)
-ggplot(sea_grass_data, aes(x = accepted_name)) + geom_histogram(stat = "count", color = "blue") + facet_wrap(~accepted_name, nrow = 4)
+ggplot(sea_grass_data, aes(x = accepted_name)) + geom_histogram(stat = "count", color = "blue") + facet_wrap(~accepted_name, nrow = 3)
 ```
 ```{r}
-ggplot(sea_grass_data, aes(x = early_interval)) + geom_histogram(stat = "count", color = "red") + facet_wrap(~early_interval, nrow = 4)
+ggplot(sea_grass_data, aes(x = early_interval)) + geom_histogram(stat = "count", color = "red") + facet_wrap(~early_interval, nrow = 2)
 ```
 ```{r}
 source("~/PyRate/pyrate_utilities.r")
 
 # we need to give the utilities a list of extant species
-extant_seagrasses = c("Heterozostera chilensis", "Heterozostera polychlamys", "Heterozostera nigricaulis", "Heterozostera tasmanica")
+extant_seagrasses = c("Heterozostera chilensis", "Heterozostera polychlamys", "Heterozostera nigricaulis", "Heterozostera tasmanica", "Potamogeton","Syringodium filiforme", "Triglochin", "Zannichellia", "Zosteraceae")
 
 # use the extract.ages.pbdb() function in pyrate_utilities to reformat our dataset...
-extract.ages.pbdb(file= "pyrate_seagrass_data.csv",extant_species=extant_seagrasses)
+extract.ages.pbdb(file= "pyrate_alismatales.csv",extant_species=extant_seagrasses)
 ```
+
+```{r}
+mp <- NULL
+mapWorld <- borders("world", colour="gray50", fill="gray50") # create a layer of borders
+mp <- ggplot() + mapWorld
+
+mp <- mp+ geom_point(aes(x=sea_grass_data$lng, y=sea_grass_data$lat) ,color="blue", size=1) 
+mp
+```
+
+```{r}
+mp2 <- NULL
+extant_alismatales <- read.csv("extant_alismatales.csv")
+head(extant_alismatales[1:3])
+mapWorld <- borders("world", colour="gray50", fill="gray50") # create a layer of borders
+mp2 <- ggplot() + mapWorld
+
+mp2 <- mp2 + geom_point(aes(x=extant_alismatales$lng, y=extant_alismatales$lat) ,color="blue", size=1) 
+mp2
+```
+
